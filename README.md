@@ -13,7 +13,8 @@ smile_cascade = cv2.CascadeClassifier(cv2.data.haarcascades +'haarcascade_smile.
 
 # Drawing Rectangle and Applying Text around Face
   An Offset was required to align the rectangles without overlapping each other
-  Uses face haarcascades data for face detection
+  
+  Using face haarcascades data for face detection
 
 ```  
 for (x, y, width, height) in faces: 
@@ -27,11 +28,14 @@ for (x, y, width, height) in faces:
     cv2.putText(image, f'Face{facecounter}', (x + 40, y-y_offset), 
                 cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
 ```
+<img width="705" alt="Screenshot 2024-06-27 at 12 47 33 AM" src="https://github.com/brycekan123/Facial_and_Smile_Recognition/assets/119905092/ba7ebd1d-eff1-4ec7-9455-5ca27c2677aa">
+
 
 
  # Drawing Rectangle and Applying Text around Smile   
- Uses smile haarcascades data for smile detection
- Croop out each individual face for smile detection within individual face
+ Using smile haarcascades data for smile detection
+ 
+ Crop out each individual face for smile detection within individual face
  ```
     IndividualFace = image[y:y + height, x:x + width]
     smiles = smile_cascade.detectMultiScale(IndividualFace, scaleFactor=1.9, minNeighbors=10) 
@@ -42,9 +46,13 @@ for (x, y, width, height) in faces:
         text_y = max(smile_y - 5, 0)  # Ensure text_y doesn't go out of the image
         cv2.putText(IndividualFace, f'Smile{smilecounter}', (smile_x, text_y), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 1)
 ```
+
+<img width="704" alt="Screenshot 2024-06-27 at 12 47 01 AM" src="https://github.com/brycekan123/Facial_and_Smile_Recognition/assets/119905092/2bb0dd96-7063-4c30-9f0a-6a5e49b3ff73">
+
 # Counting Number of Faces and Smiles Detected in given photo
 
 ```
 print(f"Number of Faces Detected: {facecounter}")
 print(f"Number of Smiles Detected: {smilecounter}")
 ```
+<img width="258" alt="Screenshot 2024-06-27 at 12 46 43 AM" src="https://github.com/brycekan123/Facial_and_Smile_Recognition/assets/119905092/9c50aafd-d9cc-4751-8c95-d33a02d7becf">
